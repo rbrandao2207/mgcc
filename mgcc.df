@@ -16,5 +16,9 @@ RUN apt-get update\
 COPY boost_1_73_0 /usr/local/include/boost_1_73_0
 RUN cd /usr/local/include/boost_1_73_0 && ./bootstrap.sh --with-libraries=serialization\
 		&& ./b2 install
-
+		
+COPY libpqxx /libpqxx
+RUN cd /libpqxx; ./configure --disable-documentation && make -j 2 && make install\
+		&& cd ..; rm -rf libpqxx
+		
 ENV LD_LIBRARY_PATH /usr/local/lib
