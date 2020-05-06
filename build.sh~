@@ -1,0 +1,1 @@
+docker build -t rbrandao2207/mcpp -f mcpp.df .
