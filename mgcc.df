@@ -1,6 +1,6 @@
-# GCC, libs pqxx and ublas to be installed
+# gcc, boost & libpqxx
 
-FROM gcc
+FROM debian:buster
 
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
@@ -11,7 +11,7 @@ RUN dpkg-reconfigure -f noninteractive tzdata
 RUN apt-get update\
 		&& apt-get install -y --no-install-recommends apt-utils\
 		&& apt-get install -y postgresql postgresql-client\
-		build-essential libpq-dev libpqxx-6.2
+		build-essential libpq-dev
 
 COPY boost_1_73_0 /usr/local/include/boost_1_73_0
 RUN cd /usr/local/include/boost_1_73_0 && ./bootstrap.sh --with-libraries=serialization\
